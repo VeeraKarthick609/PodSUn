@@ -15,7 +15,7 @@ def transcribe_audio(file_name: str) -> str:
     """
 
     try:
-        model = whisper.load_model("base")
+        model = whisper.load_model("tiny")
         transcribe = model.transcribe(file_name)
         text = transcribe["text"]
         return text
