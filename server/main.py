@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from server.utils.summarizer import getLLAmaSummary
 from utils.download_audio import download_audio_from_url
 from utils.transcribe import transcribe_audio
 
@@ -30,9 +31,16 @@ def get_url():
         print("transcribe done!!!")
         if text is None:
             return jsonify({"error": "Failed to transcribe audio."}), 500
+        
+        # summarize the text
+        summarised_text = getLLAmaSummary(text)
+        print("Text summarization done!!!")
+
+        if summarised_text is None:
+            return jsonify({"error": "Failed to summarize text."}), 500
 
         # Prepare server response
-        response = {"transcribed_text": text}
+        response = {"summarized_text": summarised_text}
         return jsonify(response)
 
     except Exception as e:
