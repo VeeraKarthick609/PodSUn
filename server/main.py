@@ -1,9 +1,19 @@
 from flask import Flask, request, jsonify
+from flask_socketio import SocketIO, emit
 from server.utils.summarizer import getLLAmaSummary
 from utils.download_audio import download_audio_from_url
 from utils.transcribe import transcribe_audio
 
 app = Flask(__name__)
+socketio = SocketIO(app)
+
+@socketio.on('connect')
+def handle_connect():
+    print('Client connected')
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    print('Client disconnected')
 
 @app.route("/", methods=["POST"])
 def get_url():
@@ -19,23 +29,18 @@ def get_url():
         audio_url = request_data['url']
 
         # Download audio and get the file name
+        emit('status_update', 'Downloading audio...')
         file_name = download_audio_from_url(audio_url)
-        print("File downloaded")   
-
         if file_name is None:
             return jsonify({"error": "Failed to download audio from the provided URL."}), 500
 
-        # Transcribe
-        print(file_name)
+        emit('status_update', 'Transcribing audio...')
         text = transcribe_audio(file_name=file_name)
-        print("transcribe done!!!")
         if text is None:
             return jsonify({"error": "Failed to transcribe audio."}), 500
         
-        # summarize the text
+        emit('status_update', 'Summarizing text...')
         summarised_text = getLLAmaSummary(text)
-        print("Text summarization done!!!")
-
         if summarised_text is None:
             return jsonify({"error": "Failed to summarize text."}), 500
 
@@ -48,4 +53,4 @@ def get_url():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    socketio.run(app, debug=True)
