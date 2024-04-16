@@ -24,11 +24,10 @@ def transcribe_audio(file_name: str) -> str:
         print(f"Error occurred during transcription: {e}")
         return None
 
-# Example usage
-"""audio_file = "example_audio.mp3"  # Example audio file name
+"""# Example usage
+audio_file = "./outputs/2024-04-16 08:33:36.165814.mp3"  # Example audio file name
 transcribed_text = transcribe_audio(audio_file)
 if transcribed_text:
     print(f"Transcription: {transcribed_text}")
 else:
-    print("Failed to transcribe audio.")
-"""
+    print("Failed to transcribe audio.")"""

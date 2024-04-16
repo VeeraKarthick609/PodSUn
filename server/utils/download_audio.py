@@ -39,8 +39,8 @@ def download_audio_from_url(url: str) -> str:
         print(f"Error occurred: {e}")
         return None
 
-# Example usage
-"""url = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"  # Example YouTube URL
+"""# Example usage
+url = "https://www.youtube.com/watch?v=2_gSXyt2108"  # Example YouTube URL
 downloaded_file = download_audio_from_url(url)
 if downloaded_file:
     print(f"Audio downloaded successfully: {downloaded_file}")
