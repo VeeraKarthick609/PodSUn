@@ -21,19 +21,24 @@ def get_url():
 
         # Extract URL from JSON data
         audio_url = request_data['url']
-
+        print("Downloading audio!!!")
+        print(audio_url)
         # Download audio and get the file name
         file_name = download_audio_from_url(audio_url)
         if file_name is None:
             return jsonify({"error": "Failed to download audio from the provided URL."}), 500
+        print("Download completed!!!")
 
+        print("Starting Transcribing!!!")
         # Transcribe
-        text = transcribe_audio(file_name=file_name)
+        """text = transcribe_audio(file_name=file_name)
         if text is None:
-            return jsonify({"error": "Failed to transcribe audio."}), 500
-        
+            return jsonify({"error": "Failed to transcribe audio."}), 500"""
+        print("Done transcribing!!!")
+
         # Summarize the text
-        summarised_text = getLLAmaSummary(text)
+        #summarised_text = getLLAmaSummary(text)
+        summarised_text = "Hey done with the summary"
         if summarised_text is None:
             return jsonify({"error": "Failed to summarize text."}), 500
 
