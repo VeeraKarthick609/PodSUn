@@ -31,14 +31,13 @@ def get_url():
 
         print("Starting Transcribing!!!")
         # Transcribe
-        """text = transcribe_audio(file_name=file_name)
+        text = transcribe_audio(file_name=file_name)
         if text is None:
-            return jsonify({"error": "Failed to transcribe audio."}), 500"""
+            return jsonify({"error": "Failed to transcribe audio."}), 500
         print("Done transcribing!!!")
 
         # Summarize the text
-        #summarised_text = getLLAmaSummary(text)
-        summarised_text = "Hey done with the summary"
+        summarised_text = getLLAmaSummary(text)
         if summarised_text is None:
             return jsonify({"error": "Failed to summarize text."}), 500
 

@@ -3,6 +3,7 @@
     width: 300px;
     margin: 0 auto; /* Center the container */
     text-align: center; /* Center the content */
+    position: relative; /* Needed for absolute positioning of the paste icon */
 }
 
 /* Logo style */
@@ -37,9 +38,34 @@
 /* Summary container style */
 .summary {
     margin-top: 20px;
-    padding: 20px;
+    padding: 10px; /* Reduce padding for the response text */
     border-radius: 5px;
+    font-size: 18px; /* Increase font size for the response text */
 }
+
+/* Paste icon */
+.paste-icon {
+    position: absolute;
+    bottom: -20px; /* Adjust vertical position as needed */
+    left: 10px; /* Adjust horizontal position as needed */
+    width: 15px; /* Adjust icon size as needed */
+    height: 15px; /* Adjust icon size as needed */
+    display: none; /* Hide the icon by default */
+    color: #5abcbf; /* Primary color */
+}
+
+/* Tick icon */
+.tick-icon {
+    position: absolute;
+    bottom: -20px; /* Adjust vertical position as needed */
+    left: 10px; /* Adjust horizontal position as needed */
+    width: 15px; /* Adjust icon size as needed */
+    height: 15px; /* Adjust icon size as needed */
+    display: none; /* Hide the icon by default */
+    color: #5abcbf; /* Change color of the tick icon */
+}
+
+
 
 /* Shimmer effect */
 .shimmer {
@@ -54,8 +80,8 @@
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)); /* Shimmer effect color */
-    animation: shimmer 2s infinite;
+    background: linear-gradient(to right, rgba(90, 188, 191, 0), rgba(90, 188, 191, 0.5), rgba(90, 188, 191, 0)); /* Shimmer effect color */
+    animation: shimmer 1.5s infinite; /* Adjusted timing for better visibility */
 }
 
 @keyframes shimmer {
